@@ -12,9 +12,9 @@ def terminal_height():
     else:
         return get_terminal_size().lines-1
 
-def load(sec=1.6):
-    time = sec
-    while time>0:
+def load(revolutions=2):
+    remaining = revolutions
+    while remaining>0:
         clear()
         print("/", end="\n"*terminal_height())
         sleep(.2)
@@ -27,5 +27,5 @@ def load(sec=1.6):
         clear()
         print("—", end="\n"*terminal_height())
         sleep(.2)
-        time-=.8
+        remaining-=.5
     clear()
