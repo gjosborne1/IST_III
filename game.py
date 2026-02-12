@@ -6,7 +6,7 @@ if num==37:
     num_actual="00"
 else:
     num_actual=str(num)
-if num==0 or num==38:
+if num==0 or num==37:
     odd_even="neither odd nor even"
     color="green"
     row=0; half=0; third=0
