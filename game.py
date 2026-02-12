@@ -1,7 +1,7 @@
 from game_functions import*
 import random
 
-num = random.randrange(0,38)
+num = random.randrange(38)
 if num==37:
     num_actual="00"
 else:
