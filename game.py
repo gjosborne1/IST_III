@@ -25,6 +25,10 @@ else:
             color="red"
         else:
             color="black"
+    if num%3==0:
+        row=3
+    else:
+        row=num%3
     if num<19:
         half=1
     else:
@@ -35,13 +39,6 @@ else:
         third=2
     else:
         third=3
-    num+=2
-    if num%3==0:
-        row=1
-    elif num%3==1:
-        row=2
-    else:
-        row=3
 
 load() #TESTING PURPOSES
 print(f"Landed on: {num_actual}") #TESTING PURPOSES
