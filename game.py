@@ -17,7 +17,7 @@ while True:
     load(1)
     match inp:
         case "bet":
-            num = random.randrange(38)
+            num=random.randrange(38)
             if num==37:
                 num_actual="00"
             else:
@@ -73,7 +73,7 @@ while True:
                 bet_entered=False
                 while not bet_entered:
                     try:
-                        inp=float(input("Enter bet amount:\n"))
+                        inp = round(float(input("Enter bet amount:\n")), 2)
                     except ValueError:
                         print("Invalid input, please type a number")
                     else:
@@ -88,17 +88,17 @@ while True:
             else:
                 bet=100
                 print("No money to bet. Bet automatically set to $100")
-            print("You will be asked to make certain bets in order. If you do NOT wish to make the bet, type \"n\" to move on:")
-            made_bet=False
+            print("You will be asked to make certain bets in order. Each indivual bet can either win or lose money based on the amount that you bet. If you do NOT wish to make the bet, type \"n\" to move on:")
+            made_bet=0
             while inp!="o" and inp!="e" and inp!="n":
                 inp = input("Type \"o\" to bet on odd or \"e\" to bet on even\n").lower()
                 match inp:
                     case "o":
                         odd=True
-                        made_bet=True
+                        made_bet+=1
                     case "e":
                         even=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -109,10 +109,10 @@ while True:
                 match inp:
                     case "r":
                         red=True
-                        made_bet=True
+                        made_bet+=1
                     case "b":
                         black=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -123,13 +123,13 @@ while True:
                 match inp:
                     case "1":
                         row1=True
-                        made_bet=True
+                        made_bet+=1
                     case "2":
                         row2=True
-                        made_bet=True
+                        made_bet+=1
                     case "3":
                         row3=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -140,10 +140,10 @@ while True:
                 match inp:
                     case "1":
                         half1=True
-                        made_bet=True
+                        made_bet+=1
                     case "2":
                         half2=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -154,13 +154,13 @@ while True:
                 match inp:
                     case "1":
                         third1=True
-                        made_bet=True
+                        made_bet+=1
                     case "2":
                         third2=True
-                        made_bet=True
+                        made_bet+=1
                     case "3":
                         third3=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -171,7 +171,7 @@ while True:
                 match inp:
                     case "y":
                         _0=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
@@ -182,15 +182,15 @@ while True:
                 match inp:
                     case "y":
                         _00=True
-                        made_bet=True
+                        made_bet+=1
                     case "n":
                         pass
                     case _:
                         print("Invalid input, please type \"y\" or move on by typing \"n\"")
             inp=None
             #Make single bet here
-            if made_bet:
-                balance-=bet
+            if made_bet>0:
+                balance-=bet*made_bet
                 load()
                 print(f"Landed on: {num_actual}")
                 print(f"{num_actual} is {odd_even}")
