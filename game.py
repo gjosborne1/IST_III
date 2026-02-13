@@ -71,7 +71,7 @@ while True:
             bet_entered=False
             while not bet_entered:
                 try:
-                    inp = float(input("Enter bet amount:\n"))
+                    inp=float(input("Enter bet amount:\n"))
                 except ValueError:
                     print("Invalid input, please type a number")
                 else:
