@@ -165,6 +165,8 @@ while True:
                     case _:
                         print("Invalid input, please type \"1\" or \"2\" or \"3\" or move on by typing \"n\"")
             inp=None
+            #Make single bet here
+            inp=None
             while inp!="y" and inp!="n":
                 inp = input("Type \"y\" to bet on 0\n").lower()
                 match inp:
@@ -186,8 +188,6 @@ while True:
                         pass
                     case _:
                         print("Invalid input, please type \"y\" or move on by typing \"n\"")
-            inp=None
-            #Make single bet here
             if made_bet>0:
                 balance-=bet*made_bet
                 load()
