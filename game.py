@@ -84,6 +84,8 @@ while True:
             third1=False
             third2=False
             third3=False
+            single=False
+            single_list=["","","","","","","","",""]
             _0=False
             _00=False
             if balance>0:
@@ -173,7 +175,31 @@ while True:
                     case _:
                         print("Invalid input, please type \"1\" or \"2\" or \"3\" or move on by typing \"n\"")
             inp=None
-            #Make single bet here
+            counter=0
+            while counter<9 and inp!="n":
+                inp = input("Type a number between 1 and 36 to bet on that number:\n")
+                match inp:
+                    case "n":
+                        pass
+                    case _:
+                        try:
+                            inp = int(inp)
+                        except ValueError:
+                            print("Invalid input, please type a number between 1 and 36 or move on by typing \"n\"")
+                        else:
+                            if not 0<inp<37:
+                                print("Invalid input, please type a number between 1 and 36 or move on by typing \"n\"")
+                            elif str(inp) in single_list:
+                                print("Cannot bet on a number twice")
+                            else:
+                                single=check_balance(bet,made_bet,balance, negative)
+                                if single:
+                                    single_list[counter]=str(inp)
+                                    counter+=1
+                                else:
+                                    counter=9
+                                    if single_list[0]!="":
+                                        single=True
             inp=None
             while inp!="y" and inp!="n":
                 inp = input("Type \"y\" to bet on 0\n").lower()
@@ -267,7 +293,14 @@ while True:
                         msg("third 2", "w", bet,3)
                     else:
                         msg("third 3")
-                #Win condition for single bets
+                if single:
+                    counter=0
+                    while counter<9 and single_list[counter]!="":
+                        if num_actual==single_list[counter]:
+                            msg(single_list[counter], "w", bet,37)
+                        else:
+                            msg(single_list[counter])
+                        counter+=1
                 if _0:
                     if num_actual=="0":
                         msg("0", "w", bet,37)
