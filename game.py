@@ -10,6 +10,14 @@ def check_balance(x,y,z, negative_bet):
         global negative; negative=False
         return True
 
+def msg(type, w_l="l", x=0,y=0):
+    if w_l=="w":
+        print(f"Your bet on {type} was a win!")
+        print(f"+${x*(y-1):.2f}")
+        global balance; balance+=x*y
+    else:
+        print(f"Your bet on {type} was a loss")
+
 balance = 100.0
 inp = None
 clear()
@@ -199,7 +207,78 @@ while True:
                     print(f"{num_actual} is in half {half}")
                     print(f"{num_actual} is in third {third}")
                 print()
-                #Put win conditions here
+                if odd:
+                    if odd_even=="odd":
+                        msg("odds", "w", bet,2)
+                    else:
+                        msg("odds")
+                if even:
+                    if odd_even=="even":
+                        msg("evens", "w", bet,2)
+                    else:
+                        msg("evens")
+                if red:
+                    if color=="red":
+                        msg("reds", "w", bet,2)
+                    else:
+                        msg("reds")
+                if black:
+                    if color=="black":
+                        msg("blacks", "w", bet,2)
+                    else:
+                        msg("blacks")
+                if row1:
+                    if row==1:
+                        msg("column 1", "w", bet,3)
+                    else:
+                        msg("column 1")
+                if row2:
+                    if row==2:
+                        msg("column 2", "w", bet,3)
+                    else:
+                        msg("column 2")
+                if row3:
+                    if row==3:
+                        msg("column 3", "w", bet,3)
+                    else:
+                        msg("column 3")
+                if half1:
+                    if half==1:
+                        msg("half 1", "w", bet,2)
+                    else:
+                        msg("half 1")
+                if half2:
+                    if half==2:
+                        msg("half 2", "w", bet,2)
+                    else:
+                        msg("half 2")
+                if third1:
+                    if third==1:
+                        msg("third 1", "w", bet,3)
+                    else:
+                        msg("third 1")
+                if third2:
+                    if third==2:
+                        msg("third 1", "w", bet,3)
+                    else:
+                        msg("third 1")
+                if third3:
+                    if third==3:
+                        msg("third 2", "w", bet,3)
+                    else:
+                        msg("third 3")
+                #Win condition for single bets
+                if _0:
+                    if num_actual=="0":
+                        msg("0", "w", bet,37)
+                    else:
+                        msg("0")
+                if _00:
+                    if num_actual=="00":
+                        msg("00", "w", bet,37)
+                    else:
+                        msg("00")
+                print()
             else:
                 clear()
                 print("No bets were made")
