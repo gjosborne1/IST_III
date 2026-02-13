@@ -85,7 +85,7 @@ while True:
             third2=False
             third3=False
             single=False
-            single_list=["","","","","","","","",""]
+            single_list=[""]*36
             _0=False
             _00=False
             if balance>0:
@@ -176,7 +176,7 @@ while True:
                         print("Invalid input, please type \"1\" or \"2\" or \"3\" or move on by typing \"n\"")
             inp=None
             counter=0
-            while counter<9 and inp!="n":
+            while counter<36 and inp!="n":
                 inp = input("Type a number between 1 and 36 to bet on that number:\n")
                 match inp:
                     case "n":
@@ -197,7 +197,7 @@ while True:
                                     single_list[counter]=str(inp)
                                     counter+=1
                                 else:
-                                    counter=9
+                                    counter=36
                                     if single_list[0]!="":
                                         single=True
             inp=None
@@ -295,20 +295,20 @@ while True:
                         msg("third 3")
                 if single:
                     counter=0
-                    while counter<9 and single_list[counter]!="":
+                    while counter<36 and single_list[counter]!="":
                         if num_actual==single_list[counter]:
-                            msg(single_list[counter], "w", bet,37)
+                            msg(single_list[counter], "w", bet,36)
                         else:
                             msg(single_list[counter])
                         counter+=1
                 if _0:
                     if num_actual=="0":
-                        msg("0", "w", bet,37)
+                        msg("0", "w", bet,36)
                     else:
                         msg("0")
                 if _00:
                     if num_actual=="00":
-                        msg("00", "w", bet,37)
+                        msg("00", "w", bet,36)
                     else:
                         msg("00")
                 print()
@@ -325,7 +325,7 @@ Red/Black: Bet on every red number or every black number, 1 to 1 payout
 Column: Bet on the entire first, second, or third horizontal row on the table, 2 to 1 payout
 1-18 or 19-36: Bet on the entire first or second vertical half of the table, 1 to 1 payout
 Dozen: Bet on the entire first, second, or third vertical third of the table, 2 to 1 payout
-Single: Bet on one number on the table, 36 to 1 payout. Multiple numbers can be bet on at the same time!
+Single: Bet on one number on the table, 35 to 1 payout. Multiple numbers can be bet on at the same time!
 
 The table layout is as follows:
 3r  6b  9r  12r  15b  18r  21r  24b  27r  30r  33b  36r   column 3
@@ -334,7 +334,7 @@ The table layout is as follows:
      third 1    |     third 2      |      third 3       |
          half 1           |          half 2             |
 
-The table also includes a green 0 and a green 00, which will each have a 36 to 1 payout
+The table also includes a green 0 and a green 00, which will each have a 35 to 1 payout
 ---""")
         case "save":
             print() #Do this
