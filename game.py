@@ -1,6 +1,15 @@
 from game_functions import*
 import random
 
+def check_balance(x,y,z, negative_bet):
+    if z-x*(y+1)<0 and not negative_bet:
+        print("Cannot make anymore bets due to balance")
+        return False
+    else:
+        global made_bet; made_bet+=1
+        global negative; negative=False
+        return True
+
 balance = 100.0
 inp = None
 clear()
@@ -70,6 +79,7 @@ while True:
             _0=False
             _00=False
             if balance>0:
+                negative=False
                 bet_entered=False
                 while not bet_entered:
                     try:
@@ -86,6 +96,7 @@ while True:
                             bet_entered=True
                 clear()
             else:
+                negative=True
                 bet=100
                 print("No money to bet. Bet automatically set to $100")
             print("You will be asked to make certain bets in order. Each indivual bet can either win or lose money based on the amount that you bet. If you do NOT wish to make the bet, type \"n\" to move on:")
@@ -94,11 +105,9 @@ while True:
                 inp = input("Type \"o\" to bet on odd or \"e\" to bet on even\n").lower()
                 match inp:
                     case "o":
-                        odd=True
-                        made_bet+=1
+                        odd=check_balance(bet,made_bet,balance, negative)
                     case "e":
-                        even=True
-                        made_bet+=1
+                        even=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -108,11 +117,9 @@ while True:
                 inp=input("Type \"r\" to bet on red or \"b\" to bet on black\n").lower()
                 match inp:
                     case "r":
-                        red=True
-                        made_bet+=1
+                        red=check_balance(bet,made_bet,balance, negative)
                     case "b":
-                        black=True
-                        made_bet+=1
+                        black=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -122,14 +129,11 @@ while True:
                 inp = input("Type \"1\" to bet on column 1, \"2\" to bet on column 2, or \"3\" to bet on column 3\n").lower()
                 match inp:
                     case "1":
-                        row1=True
-                        made_bet+=1
+                        row1=check_balance(bet,made_bet,balance, negative)
                     case "2":
-                        row2=True
-                        made_bet+=1
+                        row2=check_balance(bet,made_bet,balance, negative)
                     case "3":
-                        row3=True
-                        made_bet+=1
+                        row3=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -139,11 +143,9 @@ while True:
                 inp=input("Type \"1\" to bet on half 1 (1-18) or \"2\" to bet on half 2 (19-36)\n").lower()
                 match inp:
                     case "1":
-                        half1=True
-                        made_bet+=1
+                        half1=check_balance(bet,made_bet,balance, negative)
                     case "2":
-                        half2=True
-                        made_bet+=1
+                        half2=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -153,14 +155,11 @@ while True:
                 inp = input("Type \"1\" to bet on third 1 (1st dozen), \"2\" to bet on third 2 (2nd dozen), or \"3\" to bet on third 3 (3rd dozen)\n").lower()
                 match inp:
                     case "1":
-                        third1=True
-                        made_bet+=1
+                        third1=check_balance(bet,made_bet,balance, negative)
                     case "2":
-                        third2=True
-                        made_bet+=1
+                        third2=check_balance(bet,made_bet,balance, negative)
                     case "3":
-                        third3=True
-                        made_bet+=1
+                        third3=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -170,8 +169,7 @@ while True:
                 inp = input("Type \"y\" to bet on 0\n").lower()
                 match inp:
                     case "y":
-                        _0=True
-                        made_bet+=1
+                        _0=check_balance(bet,made_bet,balance, negative)
                     case "n":
                         pass
                     case _:
@@ -181,8 +179,9 @@ while True:
                 inp = input("Type \"y\" to bet on 00\n").lower()
                 match inp:
                     case "y":
-                        _00=True
-                        made_bet+=1
+                        _00=check_balance(bet,made_bet,balance, negative)
+                        if not _00:
+                            sleep(2)
                     case "n":
                         pass
                     case _:
