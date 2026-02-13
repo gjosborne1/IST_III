@@ -69,29 +69,36 @@ while True:
             third3=False
             _0=False
             _00=False
-            bet_entered=False
-            while not bet_entered:
-                try:
-                    inp=float(input("Enter bet amount:\n"))
-                except ValueError:
-                    print("Invalid input, please type a number")
-                else:
-                    if inp>balance:
-                        print(f"Bet cannot exceed current money amount\nCurrent balance: ${balance:.2f}")
-                    elif inp<.01:
-                        print("Bet cannot be negative or less than 1 cent")
+            if balance>0:
+                bet_entered=False
+                while not bet_entered:
+                    try:
+                        inp=float(input("Enter bet amount:\n"))
+                    except ValueError:
+                        print("Invalid input, please type a number")
                     else:
-                        bet=inp
-                        bet_entered=True
-            clear()
+                        if inp>balance:
+                            print(f"Bet cannot exceed current money amount\nCurrent balance: ${balance:.2f}")
+                        elif inp<.01:
+                            print("Bet cannot be negative or less than 1 cent")
+                        else:
+                            bet=inp
+                            bet_entered=True
+                clear()
+            else:
+                bet=100
+                print("No money to bet. Bet automatically set to $100")
             print("You will be asked to make certain bets in order. If you do NOT wish to make the bet, type \"n\" to move on:")
+            made_bet=False
             while inp!="o" and inp!="e" and inp!="n":
                 inp = input("Type \"o\" to bet on odd or \"e\" to bet on even\n").lower()
                 match inp:
                     case "o":
                         odd=True
+                        made_bet=True
                     case "e":
                         even=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -102,8 +109,10 @@ while True:
                 match inp:
                     case "r":
                         red=True
+                        made_bet=True
                     case "b":
                         black=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -114,10 +123,13 @@ while True:
                 match inp:
                     case "1":
                         row1=True
+                        made_bet=True
                     case "2":
                         row2=True
+                        made_bet=True
                     case "3":
                         row3=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -128,8 +140,10 @@ while True:
                 match inp:
                     case "1":
                         half1=True
+                        made_bet=True
                     case "2":
                         half2=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -140,10 +154,13 @@ while True:
                 match inp:
                     case "1":
                         third1=True
+                        made_bet=True
                     case "2":
                         third2=True
+                        made_bet=True
                     case "3":
                         third3=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -154,6 +171,7 @@ while True:
                 match inp:
                     case "y":
                         _0=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
@@ -164,22 +182,28 @@ while True:
                 match inp:
                     case "y":
                         _00=True
+                        made_bet=True
                     case "n":
                         pass
                     case _:
                         print("Invalid input, please type \"y\" or move on by typing \"n\"")
             inp=None
             #Make single bet here
-            load()
-            print(f"Landed on: {num_actual}")
-            print(f"{num_actual} is {odd_even}")
-            print(f"{num_actual} is {color}")
-            if row!=0:
-                print(f"{num_actual} is in column {row}")
-                print(f"{num_actual} is in half {half}")
-                print(f"{num_actual} is in third {third}")
-            print()
-            #Put win conditions here
+            if made_bet:
+                balance-=bet
+                load()
+                print(f"Landed on: {num_actual}")
+                print(f"{num_actual} is {odd_even}")
+                print(f"{num_actual} is {color}")
+                if row!=0:
+                    print(f"{num_actual} is in column {row}")
+                    print(f"{num_actual} is in half {half}")
+                    print(f"{num_actual} is in third {third}")
+                print()
+                #Put win conditions here
+            else:
+                clear()
+                print("No bets were made")
         case "balance":
             print(f"Current balance: ${balance:.2f}")
         case "help":
