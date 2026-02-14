@@ -271,12 +271,12 @@ while True:
                         msg("third 1")
                 if third2:
                     if third==2:
-                        msg("third 1", "w", bet,3)
+                        msg("third 2", "w", bet,3)
                     else:
-                        msg("third 1")
+                        msg("third 2")
                 if third3:
                     if third==3:
-                        msg("third 2", "w", bet,3)
+                        msg("third 3", "w", bet,3)
                     else:
                         msg("third 3")
                 if single:
