@@ -72,22 +72,8 @@ while True:
                     third=2
                 else:
                     third=3
-            odd=False
-            even=False
-            red=False
-            black=False
-            row1=False
-            row2=False
-            row3=False
-            half1=False
-            half2=False
-            third1=False
-            third2=False
-            third3=False
-            single=False
+            odd=even=red=black=row1=row2=row3=half1=half2=third1=third2=third3=single=_0=_00=False
             single_list=[""]*36
-            _0=False
-            _00=False
             if balance>0:
                 negative=False
                 bet_entered=False
